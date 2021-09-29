@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /myapp
+EXPOSE 80
+EXPOSE 443
 
 # copiar csproj e restaurar como camadas distintas
 COPY *.sln .

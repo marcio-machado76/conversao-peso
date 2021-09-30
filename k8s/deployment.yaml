@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: converte-peso
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: converte-peso
+  template:
+    metadata: 
+      labels: 
+        app: converte-peso
+    spec:
+      containers:
+        - name: converte-peso
+          image: machado1976/conversao-peso:v1
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: converte-peso
+spec:
+  selector:
+    app: converte-peso
+  ports:
+    - port: 80
+      protocol: TCP
+      name: http
+      nodePort: 30000
+  type: NodePort

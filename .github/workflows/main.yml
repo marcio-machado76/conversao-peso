@@ -40,3 +40,4 @@ jobs:
           images: machado1976/conversao-peso:${{ github.run_number }}
           manifests: |
             k8s/deployment.yaml
+

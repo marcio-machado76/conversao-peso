@@ -8,14 +8,14 @@
 
 ```Dockerfile
 
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+EXPOSE 80 
+
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /myapp
-EXPOSE 80
-
-# copiar csproj e restaurar como camadas distintas
 COPY *.sln .
 COPY ConversaoPeso.Web/*.csproj ./ConversaoPeso.Web/
-RUN dotnet restore
+RUN dotnet restore ./ConversaoPeso.Web/ConversaoPeso.Web.csproj
 
 # copiar o restante e criar um app
 COPY ConversaoPeso.Web/. ./ConversaoPeso.Web/
